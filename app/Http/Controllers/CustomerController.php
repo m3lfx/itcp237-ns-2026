@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class CustomerController extends Controller
 {
@@ -11,7 +12,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        // dd($customers);
+        return response()->json($customers);
     }
 
     /**
@@ -27,7 +30,13 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customer = Customer::with('orders')->where('customer_id', $id)->first();
+        // $customer = Customer::find($id);
+        // dd($customer->orders);
+        // foreach ($customer->orders as $order) {
+        //     dump($order->orderinfo_id, $order->status);
+        // }
+        return response()->json($customer);
     }
 
     /**
