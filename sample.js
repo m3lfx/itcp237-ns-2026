@@ -191,3 +191,31 @@ console.log(mySet.has(1)); // true
 mySet.delete("foo");
 console.log(mySet.size); // 2
 for (let item of mySet) console.log(item);
+
+test.html
+    < !DOCTYPE html >
+        <html lang="en">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>jQuery Version</title>
+                <meta charset="utf-8" />
+                <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+                <!-- <script>
+                    function writeIt() {
+                        document.write("jQuery Version " + $().jquery + " loaded.");
+      }
+                </script> -->
+                <script>
+                    function writeIt() {
+                        $("#heading").css("font-weight", "bold").html("jQuery");
+                    var q = document.getElementById("question");
+                    q.innerHTML = "I Prefer jQuery!";
+      }
+                </script>
+            </head>
+            <body onload="writeIt()">
+                <p id="heading">jQuery or JavaScript</p>
+                <p id="question">Which method do you prefer?</p>
+            </body>
+        </html>
