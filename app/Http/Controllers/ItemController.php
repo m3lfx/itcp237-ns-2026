@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -11,7 +12,13 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        // $items = Item::withWhereHas('stock')->get();
+        $items = Item::withWhereHas('stock')->orderBy('item_id', 'DESC')->get();
+        // foreach ($items as $item) {
+        //     dump($item->stock->quantity);
+        // }
+        // dd($items);
+        return response()->json($items);
     }
 
     /**
