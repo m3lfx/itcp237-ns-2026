@@ -100,3 +100,19 @@ const add = function (a, b) {
 c = add(1, 2);
 
 console.log(c);
+
+const obj = {
+    name: "mike",
+    address: ['address1', "address2"],
+    phone: {
+        phone1: "9999",
+        phone2: "8888",
+    },
+    zip: function func1() {
+        return '1456'
+    }
+}
+// console.log(obj.name)
+// console.log(obj.phone.phone2)
+// console.log(obj.zip())
+console.log(obj.address[1])
