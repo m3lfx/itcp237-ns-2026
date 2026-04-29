@@ -54,3 +54,36 @@ console.log("lowercasestring".toUpperCase()); //"LOWERCASESTRING"
 console.log("UPPPERCASESTRING".toLowerCase());
 //"upppercasestring"
 console.log("There are no spaces in the end           ".trim());
+
+// var a; //declares a variable but its undefined
+// var b = 0;
+// console.log(b); //0
+// console.log(a); //undefined
+// console.log(a + b)
+
+// console.log(true && true); // true AND true returns true
+// console.log(true && false);// true AND false returns false
+// console.log(false && true);// false AND true returns false
+// console.log("Foo" && "Bar" && "bar2");// Foo(true) AND Bar(true) returns Bar
+// console.log(false && "Foo");// false && Foo(true) returns false
+// console.log("Foo" && false);// Foo(true) && false returns false
+// console.log(false && (1 == 2));// false && false(1==2) returns false
+
+// console.log("" && "Foo"); //First operand is falsy - return it
+// console.log("Foo" && "Bar"); //First operand is truthy, return the second operand
+// console.log(0 || "Foo"); //First operand is falsy - return second operand
+// console.log("Foo" || "Bar"); //First operand is truthy, return it
+// console.log(function () { } || false);
+
+function greeting(name) {
+    // if (name === undefined) {
+    //     names = "john"
+    // }
+
+    names = name || "John";
+    console.log(name);
+    // console.log("Hello " + ${names});
+    console.log(`Hello ${names}`);
+}
+// greeting("Johnson"); // alerts "Hi Johnson";
+greeting();
