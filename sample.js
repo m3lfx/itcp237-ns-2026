@@ -116,3 +116,42 @@ const obj = {
 // console.log(obj.phone.phone2)
 // console.log(obj.zip())
 console.log(obj.address[1])
+
+ar validateDataForAge = function (data) {
+    person = data();
+    console.log(person.age);
+    if (person.age < 1 || person.age > 99) {
+        return true;
+    } else {
+        return false;
+    }
+};
+var errorHandlerForAge = function (error) {
+    // console.log("Error while processing age");
+    console.log(error || "Error while processing age")
+};
+function parseRequest(data, validateData, errorHandler) {
+    var error = validateData(data);
+    if (!error) {
+        console.log("no errors");
+    } else {
+        errorHandler();
+    }
+}
+var generateDataForScientist = function () {
+    return {
+        name: "Albert Einstein",
+        age: Math.floor(Math.random() * (100 - 1)) + 1,
+    };
+};
+var generateDataForComposer = function () {
+    return {
+        name: "JS Bach",
+        // age: Math.floor(Math.random() * (100)) + 1,
+        age: 111
+    };
+};
+parseRequest(generateDataForScientist, validateDataForAge,
+    errorHandlerForAge);
+parseRequest(generateDataForComposer, validateDataForAge,
+    errorHandlerForAge);
