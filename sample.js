@@ -87,3 +87,16 @@ function greeting(name) {
 }
 // greeting("Johnson"); // alerts "Hi Johnson";
 greeting();
+
+// c = add(1, 2);
+// function add(a, b) {
+//     return a + b;
+// }
+// console.log(c)
+
+const add = function (a, b) {
+    return a + b;
+}
+c = add(1, 2);
+
+console.log(c);
