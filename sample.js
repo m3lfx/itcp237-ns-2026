@@ -155,3 +155,39 @@ parseRequest(generateDataForScientist, validateDataForAge,
     errorHandlerForAge);
 parseRequest(generateDataForComposer, validateDataForAge,
     errorHandlerForAge);
+
+var colors = ['red', 'green', 'blue'];
+colors.forEach(function (color) {
+    console.log(color);
+});
+
+var founders = new Map();
+founders.set("facebook", "mark");
+founders.set("google", "larry");
+console.log(founders.size); // 2
+console.log(founders.get("twitter")); // undefined
+console.log(founders.has("google")); // false
+for (var [key, value] of founders) {
+    console.log(key + " founded by " + value);
+}
+
+var author = {
+    firstname: "Douglas",
+    lastname: "Crockford",
+    book: {
+        title: "JavaScript- The Good Parts",
+        pages: "172"
+    }
+};
+console.log(author['firstname']); //Douglas
+console.log(author.lastname); //Crockford
+console.log(author.book.title);
+
+var mySet = new Set();
+mySet.add(1);
+mySet.add("Howdy");
+mySet.add("foo");
+console.log(mySet.has(1)); // true
+mySet.delete("foo");
+console.log(mySet.size); // 2
+for (let item of mySet) console.log(item);
