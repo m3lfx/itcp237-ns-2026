@@ -322,3 +322,264 @@ function setFirst4() {
             </ul>
         </body>
     </html>
+dom_objects.css
+p{
+    font - weight: bold;
+    font - size: 50px;
+    margin: 5px;
+    color: blue;
+}
+jquery_selectors.css
+    span{
+    padding: 2px;
+    border: 3px ridge blue;
+    color: white;
+    background: blue;
+    cursor: pointer;
+}
+    .label{
+    font - size: 25px;
+    margin: 10px;
+}
+
+    p{ margin: 0px; padding: 0px; }
+span{
+    display: inline - block;
+    color: white;
+    text - align: center;
+}
+
+$(document).ready(function () {
+    $('input:eq(0)').click(function () {
+        $('p').each(function () {
+            var parts = $(this).html().split(' ');
+            $(this).css({ 'font-size': parts[1] + 'px', color: parts[0] });
+        });
+    });
+    $('input:eq(1)').click(function () {
+        var items = $('p').map(function () {
+            var parts = $(this).html().split(' ');
+            return { color: parts[0], size: parts[1] };
+        }).get();
+        for (var idx in items) {
+            var item = items[idx];
+            var span = $('<span>' + item.color + '</span>');
+            var size = item.size * 5;
+            span.css({
+                'background-color': item.color, 'font-size': item.size + 'px',
+                width: size, height: size
+            });
+            $('div').prepend(span);
+        }
+    });
+});
+
+< !DOCTYPE html >
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-2.1.3.min.js"
+    ></script>
+    <script type="text/javascript" src="js/dom_manipulation.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/dom_manipulation.css" />
+  </head>
+  <body>
+    <input type="button" value=".each()" />
+    <input type="button" value=".map()" />
+    <p>red 10</p>
+    <p>orange 15</p>
+    <p>yellow 20</p>
+    <p>green 25</p>
+    <p>blue 30</p>
+    <p>indigo 35</p>
+    <p>violet 40</p>
+    <div></div>
+  </body>
+</html>
+
+<!DOCTYPE html >
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+            <script type="text/javascript" src="js/dom_traverse.js"></script>
+            <link rel="stylesheet" type="text/css" href="css/traverse_dom.css" />
+        </head>
+
+        <body>
+            <p>How satisfied are you 1-5</p>
+            <div>
+                <label>Quality</label>
+                <input type='text' onkeyup='update()'></input>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div>
+                <label>Taste</label>
+                <input type='text' onkeyup='update()'></input>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div>
+                <label>Server</label>
+                <input type='text' onkeyup='update()'></input>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </body>
+
+    </html>
+
+
+function update() {
+    $('span').css('background-color', 'lightgrey');
+    $('div').each(function (i) {
+        var $input = $(this).children('input:first');
+        var $value = $input.val();
+        var filter = 'span:lt(' + $value + ')';
+        $input.siblings(filter).css('background-color', 'blue');
+    })
+} 
+
+span{
+    display: inline - block;
+    height: 15px;
+    width: 10px;
+    background - color: lightgrey;
+    margin: 1px;
+    border - radius: 50 %;
+}
+    input {
+    width: 20px;
+}
+    label {
+    display: inline - block;
+    width: 60px;
+}
+
+
+    < !DOCTYPE html >
+    <html>
+        <head>
+            <title></title>
+            <script
+                src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+                crossorigin="anonymous"
+            ></script>
+            <script type="text/javascript">
+                function clickHandler(e) {
+                    console.log(e)
+        $("div").html("clicked at X postion: " + e.screenX);
+      }
+            </script>
+        </head>
+
+        <body>
+            <div onclick="clickHandler(event)">Click Here</div>
+        </body>
+    </html>
+
+
+div{
+    border - radius: 5px;
+    margin: 3px;
+    padding: 5px;
+    background - color: lightgrey;
+    font - weight: bold;
+    display: inline - block;
+    cursor: pointer;
+}
+
+function clickHandler(e, objId, num, msg) {
+    var obj = document.getElementById(objId);
+    obj.innerHTML = 'DIV ' + num + ' says ' + msg + ' at X postion: ' + e.screenX;
+}
+function yesWrapper(e) {
+    console.log(e.target)
+    clickHandler(e, 'heading', 1, 'yes');
+    e.target.removeEventListener('click', yesWrapper);
+}
+function noWrapper(e) {
+    console.log(e.target)
+    clickHandler(e, 'heading', 2, 'no');
+    e.target.removeEventListener('mouseover', noWrapper);
+}
+function onloadHandler() {
+    document.getElementById('div1').addEventListener('click', yesWrapper, false);
+    document.getElementById('div2').addEventListener('mouseover', noWrapper, false);
+    // document.getElementById('div2').addEventListener('mouseout', noWrapper, false);
+}
+
+< !DOCTYPE html >
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Document</title>
+            <script
+                type="text/javascript"
+                src="https://code.jquery.com/jquery-2.1.3.min.js"
+            ></script>
+            <script type="text/javascript" src="js/broken_event.js"></script>
+            <link rel="stylesheet" type="text/css" href="css/broken_event.css" />
+        </head>
+        <body onload="onloadHandler()">
+            <div id="div1">Say Yes</div>
+            <div id="div2">Say No</div>
+            <h1 id="heading"></h1>
+        </body>
+    </html>
+
+
+div{
+    border - radius: 5px;
+    margin: 3px;
+    padding: 5px;
+    background - color: lightgrey;
+    font - weight: bold;
+    display: inline - block;
+    cursor: pointer;
+}
+
+function clickHandler(e) {
+    console.log(e)
+    console.log(e.data, e.target.id)
+    $('#' + e.data.objId).html(e.target.id + ' says ' + e.data.answer +
+        ' at X postion: ' + e.screenX);
+}
+$(document).ready(function () {
+    $('#div1').on({ 'click': clickHandler },
+        { 'objId': 'heading', 'answer': 'yes' });
+    $(document).on('click', '#div2', { 'objId': 'heading', 'answer': 'no' }, clickHandler);
+});
+
+< !DOCTYPE html >
+    <html>
+        <head>
+            <title>Working Events</title>
+            <meta charset='utf-8' />
+            <script type='text/javascript' src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+            <script type='text/javascript' src='js/working_event.js'></script>
+            <link rel='stylesheet' type='text/css' href='css/working_event.css'>
+        </head>
+        <body>
+            <div id='div1'>Say Yes</div>
+            <div id='div2'>Say No</div>
+            <h1 id='heading'></h1>
+        </body>
+    </html>
