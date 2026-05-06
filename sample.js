@@ -583,3 +583,116 @@ $(document).ready(function () {
             <h1 id='heading'></h1>
         </body>
     </html>
+
+    <!DOCTYPE html >
+    <html>
+        <head>
+            <title>Web Element Manipulation</title>
+            <meta charset="utf-8" />
+            <script
+                type="text/javascript"
+                src="https://code.jquery.com/jquery-2.1.3.min.js"
+            ></script>
+            <script
+                type="text/javascript"
+                src="js/web_element_manipulation.js"
+            ></script>
+            <link rel="stylesheet" type="text/css" href="css/web_manipulation.css" />
+        </head>
+        <body>
+            <div id="container">
+                <div id="menu" class="menu">
+                    <span id="lessons" class="menuItem">lessons</span>
+                    <span id="docs" class="menuItem">Docs</span>
+                    <span id="fade" class="menuItem">Fade</span>
+                </div>
+                <div id="content"></div>
+            </div>
+            <div id="docMenu">
+                <span onclick='setDoc("http://api.jquery.com/")'>jQuery</span>
+                <span onclick='setDoc("http://api.jqueryui.com/")'>jQueryUI</span>
+                <span onclick='setDoc("http://jquerymobile.com/demos/1.4.0/")'
+                >jQueryMobile</span
+                >
+            </div>
+        </body>
+    </html>
+
+$(document).ready(function () {
+    $('#docMenu').hide();
+    $('#lessons').click(setHourNav);
+    $('#docs').click(setDocNav);
+    $('#fade').click(fade);
+});
+function setHour(e) {
+    var hour = $('#lessonSelect').val();
+    $('#content p').html('Lesson ' + hour);
+}
+function setHourNav() {
+    $('#docMenu').hide();
+    $('span').removeClass('active');
+    $('#lessons').addClass('active');
+    var select = $('<select id=\"lessonSelect\"></select>');
+    select.change(setHour);
+    for (var x = 1; x < 41; x++) {
+        var option = $('<option></option');
+        option.val(x);
+        option.html('Lesson ' + x);
+        select.append(option);
+    }
+    $('#content').html('');
+    $('#content').append(select).append('<br><p></p>');
+}
+function setDocNav() {
+    $('#docMenu').show();
+    $('span').removeClass('active');
+    $('#docs').addClass('active');
+}
+function setDoc(doc) {
+    var frame = $('<iframe></iframe>');
+    frame.attr('src', doc);
+    $('#content').html(frame);
+}
+function fade() {
+    var opacity = $('#content').css('opacity');
+    if (opacity < 1) {
+        $('#content').css('opacity', 1);
+    }
+    else {
+        $('#content').css('opacity', .5);
+    }
+}
+
+#banner{
+    height: 100px;
+    color: white; background - color: blue;
+    font - size: 40px; text - align: center;
+}
+#menu, #docMenu{
+    background - color: black;
+    padding: 6px 4px 9px 4px;
+}
+    .menuItem, #docMenu span{
+    padding: 2px;
+    background - image: -moz - linear - gradient(top, #2244ff 0 %, #AACCFF 85 %, #0022ff 100 %);
+    background - image: -webkit - linear - gradient(top, #2244ff 0 %, #AACCFF 85 %, #0022ff 100 %);
+    background - image: -ms - linear - gradient(top, #2244ff 0 %, #AACCFF 85 %, #0022ff 100 %);
+    font: 20px bold;
+    cursor: pointer;
+}
+    .active{ border: 5px groove; }
+#docMenu span{ display: block; margin - top: 1px; }
+#content, iframe{
+    display: inline - block;
+    width: 700px; height: 500px;
+}
+#container{ width: 800px; background - color: #C0C0C0 }
+#docMenu{
+    position: fixed; right: 60px; top: 60px;
+}
+#content{
+    padding: 2px;
+    color: blue;
+    font - size: 20px;
+}
+
