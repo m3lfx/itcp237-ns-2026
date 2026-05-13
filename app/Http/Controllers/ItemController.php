@@ -138,6 +138,7 @@ class ItemController extends Controller
             // dd($customer->orders());
             foreach ($items as $item) {
                 // $id = $item['item_id'];
+                // dd($item['quantity']);
                 $order
                     ->items()
                     ->attach($order->orderinfo_id, [
@@ -145,7 +146,7 @@ class ItemController extends Controller
                         'item_id' => $item['item_id'],
                     ]);
 
-                $stock = Stock::find($item['item_id']);
+                $stock = Stock::find($item['item_id'], "*");
                 $stock->quantity = $stock->quantity - $item['quantity'];
                 $stock->save();
             }
